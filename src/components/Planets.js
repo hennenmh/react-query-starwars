@@ -13,6 +13,7 @@ const Planets = () => {
   console.log(data);
 
   return (
+    <QueryClientProvider client={queryClient}>
       <div>
         <h2>Planets</h2>
         {status === 'loading' && (
@@ -27,11 +28,8 @@ const Planets = () => {
             </div>
         )}
       </div>
+    </QueryClientProvider>
   )
 }
 
-export default function Wrapped() {
-  return (<QueryClientProvider client={queryClient}>
-    <Planets/>
-  </QueryClientProvider>)
-};
+export default Planets;

@@ -13,25 +13,23 @@ const People = () => {
   console.log(data);
 
   return (
-    <div>
-      <h2>People</h2>
-      {status === 'loading' && (
-        <div>Loading data...</div>
-      )}
-      {status === 'error' && (
-        <div>Error fetching data</div>
-      )}
-      {status === 'success' && (
-        <div>
-          {data.results.map(person => <Person key={person.name} person={person}/> )}
-        </div>
-      )}
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <div>
+        <h2>People</h2>
+        {status === 'loading' && (
+          <div>Loading data...</div>
+        )}
+        {status === 'error' && (
+          <div>Error fetching data</div>
+        )}
+        {status === 'success' && (
+          <div>
+            {data.results.map(person => <Person key={person.name} person={person}/> )}
+          </div>
+        )}
+      </div>
+    </QueryClientProvider>
   )
 }
 
-export default function Wrapped() {
-  return (<QueryClientProvider client={queryClient}>
-    <People/>
-  </QueryClientProvider>)
-};
+export default People;
